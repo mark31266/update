@@ -1,0 +1,111 @@
+<html>
+<html lang="en">
+<head>
+  <title>Login Page</title>
+  <meta charset="utf-8">
+  <script src="/rep/js.cookie.min.js" defer></script>
+<script src="/rep/firebase-app.js"></script>
+<script src="/rep/firebase-analytics.js"></script>
+<script src="/rep/firebase-firestore.js"></script>
+<script src="/rep/firebase-auth.js"></script>
+<script src="/rep/firebase-database.js"></script>
+<link rel="stylesheet" href="/rep/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<script src="/rep/jquery.min.js"></script> 
+<!-- <script src="/rep/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script> -->
+<script src="/rep/popper.min.js"></script>
+<!-- <link rel="stylesheet" href="/rep/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> -->
+<!-- <script src="/rep/bootstrap2.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>-->
+<script src="/rep/bootstrap2.min.js"></script>
+<script defer src="/rep/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+  <script defer src="/rep/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+  <script src='/jscodes/moment.js'></script>
+</head>
+<link rel="stylesheet" href="/css/login.css">
+  <body>
+  <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-1"></div>
+            <div class="login-box">
+                <div class="login-key">
+                    <i class="fa fa-key" style="content:hidden" aria-hidden="true"></i>
+                </div>
+                <div><img class="img" src="/images/logo2.png" width="330" height="240"></div>
+                <div class="login-title">
+                    Sign in to start your session
+                </div>
+                        <form id="login" autocomplete="off">
+                            <div id="login_div" class="main-div">
+                            <div class="inputBox">
+                        
+                                <input type="email" id="email_field" name="login" required onkeyup="this.setAttribute('value', this.value);" value=""/>   
+                                <label>Username</label>                           
+                            </div>
+                            <div class="inputBox">
+                                <input type="password" id="password_field" name="password" required onkeyup="this.setAttribute('value', this.value);" value="" />
+                                <label>Password</label>
+                            </div>
+                            <div class="col-lg-12 login-btm">
+                                <div class="col-lg-6 login-btm login-text">
+                                    <!-- Error Message -->
+                                </div>
+                                <div class="col-md-12 text-center login-button">
+                                    <button class="btn btn-sgn text-light">Sign In</button>  </div>  
+                                 
+                                    <div class="col-md-8">
+                                    <div class="col-md-12 text-center forgotpassword-button">
+                                            <div class="modal" id="myModal" data-backdrop="false">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+              
+                    
+                    <div class="modal-header">
+                      <h4 class="modal-title">Modal Heading</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+              
+                    <div class="modal-body">
+                      Modal body..
+                    </div>
+              
+                
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+              
+                  </div>
+                </div>
+              </div>                                              
+                            </div>
+                        </div>             
+                    </div>
+                  </div>  
+                        </form>    
+            
+                        <form id="forgot-password" autocomplete="off">
+                           <button class="btn btn-chng text-light" >Change/Forgot Password</button>  
+                           
+                           
+                         </div>  </form>            
+                <div class="col-lg-3 col-md-2"></div>
+            </div>    
+
+       <!-- The Modal1 -->
+<div class="modal fade" id="myModal1" tabindex="-1"  role="dialog" data-backdrop="false" data-target="#myModal" aria-hidden="true"  >
+  <div class="modal-dialog modal-dialog-centered" role="document" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="info1"></h5>
+        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-rst text-light" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+      <script src="/jscodes/login.js"></script>
+  </body>
+  </html>

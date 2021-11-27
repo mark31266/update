@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Run Sample</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="/rep/firebase-app.js"></script>
+  <script src="/rep/firebase-analytics.js"></script>
+  <script src="/rep/firebase-firestore.js"></script>
+  <script src="/rep/firebase-auth.js"></script>
+<script src="/rep/firebase-database.js"></script>
+<script src="/rep/JsBarcode.all.min.js"></script>
+  <link rel="stylesheet" href="/rep/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <script src="/rep/jquery.min.js"></script> 
+   <!-- <script src="/rep/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script> -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+   <link rel="stylesheet" href="/rep/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+ <!-- <script src="/rep/bootstrap2.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>          -->
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src='/rep/socket.io.js'></script>
+<script src='/rep/socket.io.js'></script>
+<script defer src="/rep/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="/rep/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script src='/jscodes/moment.js'></script>
+  </head>
+<link rel="stylesheet" href="/css/myth60/runsamples.css">
+<body onload="dataonload()">
+<div class="wrapper" >
+<!-- Sidebar Holder -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+      <h2><b>LabX</b></h2>
+  </div>
+  <ul class="list-unstyled components">
+    <p class="search" style="font-size:22px;" id="machinename">Orphee Mythic 60</p>
+    <li >
+        <a href="/home">Main Dashboard</a>
+    </li>
+    <li>
+      <a href="#homeSubmenu1"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Run Samples</a>
+      <ul class="collapse list-unstyled show" id="homeSubmenu1">
+       
+    </ul>
+  </li>
+    <li>
+      <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Manage Records</a>
+              <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a href="/myth18/records">Mythic 18</a>
+                </li>
+                <li>
+                    <a href="/myth22/records">Mythic 22</a>
+                </li>
+                <li>
+                    <a href="/myth60/records">Mythic 60</a>
+                </li>
+            </ul>
+    </li>
+    <li>
+      <a href="/about">Contact Us</a>
+  </li>
+    <li>
+      <a href="/settings">Settings</a>
+  </li>
+</µL>
+</nav>
+    <div id="content">
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="navbar-btn" style="background-color:transparent">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="nav navbar-nav navbar-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link mr-1 my-1 date" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false" style="color:white"><div id="date"></div>
+                          <div id="date1"> </a>
+                    </li>
+                </ul>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto justify-content-center">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link mr-2 my-1 clock" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false" style="color:white"><div id="clock"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/sessionLogout" role="button"><img src="https://firebasestorage.googleapis.com/v0/b/analyzerdb.appspot.com/o/logout.png?alt=media&token=e849b0b4-1e57-49c4-8ff4-412c2a9ade1d" alt="Logout" width="27px" height="27px"></a>
+                      </li>                           
+                       
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="container" class="container">
+          <div class="header">
+            <div class="logo image"><img id="logo1" width="155px" height="155px"></div>
+            <div class="header image"><img id="header1" width="550px" height="180px"></div>
+          </div>
+        </div>
+            <div class="container">
+            <div class="first">
+  <div class="p-1 row">
+            <div class="col-lg-5"><div class="run">Run Sample</div>
+    </div>  </div>
+    <div class="tabletext">
+      <div class="row">
+      <div class="col-md-2"></div>
+       <div class="col-md-3">
+           <table class="table table-borderless table-fluid">
+     <thead>
+      <tr id="sid1" class="w-30">
+        <th class="w-30">SID:</th><th id="SID"></th>
+        </div></th></th></div>
+        </tr>
+    </thead>
+    </tbody>
+    </table>
+    </div>
+    <div class="col-md-4" id="font_results">
+      <table class="table table-borderless table-fluid">
+  <thead>
+    <th class="w-30">Test Run Date:</th><th id="DATE"></th>
+   </tr>
+  </thead>
+  </tbody>
+  </table>
+  </div>
+  <div class="col-md-3 float-left">
+    <table class="table table-borderless table-fluid">
+  <thead>
+    <th class="w-30">&nbsp</th></div>
+  </tr>
+  </thead>
+  </tbody>
+  </table>
+  </div>
+  </div>
+  </div>
+         <div class="tabletext">
+         <div class="row">
+         <!-- <div class="col-md-2"></div> -->
+         <div class="col-md-4">
+          <table id="fname1" class="table table-borderless table-fluid">
+    <thead>
+      <tr id="fn1">
+  <th class="w-30" style="text-align:left"><div class="inputBoxFname">First Name:<input id="fnameinputs"  type="text" oninput="Update(this.value,'FirstName')" required=""/></div></th></tr>
+</tr>
+<tr id="ln1">
+ <th class="w-30" style="text-align:left"><div class="inputBoxLname">Last Name: <input id="lnameinputs"  type="text" oninput="Update(this.value,'LastName')" required=""/></div></th>
+ </tr>
+
+</thead>
+</tbody>
+</table>
+</div>
+<div class="col-md-2">
+          <table id="lname1" class="table table-borderless table-fluid">
+    <thead>
+     <tr id="age1">
+       <th class="w-30" style="text-align:left"><div class="inputBoxAge">Age:  </div><input id="ageinputs"  type="number" min="1" max="99" required=""/></th></tr>
+     </tr>
+        <tr id="gender1">
+          <th class="w-30" style="text-align:left"><div class="inputBoxGender">Gender: 
+            <select id="genderselect" class="selectpicker select-gen" data-size="3" data-width="85%">
+              <option disabled selected value>Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select></b></div></th></th></div>
+          </th>
+        </tr>
+    </thead>
+</tbody>
+</table>
+</div>
+<div class="col-md-4">
+          <table id="timephys"class="table table-striped table-borderless table-fluid">    
+    <thead>
+      <tr id="pn1">
+        <th class="w-100" style="text-align:left"><div class="inputBoxDocname"><div id="bloodlabel">Requesting Physician:</div><div id="bloodlabel"><input id="physicianinputs" type="text" required=""></input></div></div></th>
+      </tr>
+
+      <tr id="time">
+        <th class="time" style="text-align:initial"><div class="inputBoxTime">Time:<u></div><input id ='timeinputs' disabled></th>
+      </tr>
+
+</thead>
+</tbody>
+</table>
+</div>
+
+<div class="col-md-2">
+  <table id="bldtyp"class="table table-striped table-borderless table-fluid">    
+<thead>
+<tr id="bld1">
+  <th class="w-40" style="text-align:left"><div class="inputBloodType"><b>Blood Type:</b><select class="selectpicker select-bld" id="bloodselect" required="" data-size="3" data-width="67%">
+    <option disabled selected value>Type</option>
+    <option>A+</option>
+    <option>AB+</option>
+    <option>B+</option>
+    <option>O+</option>
+    <option>A-</option>
+    <option>AB-</option>
+    <option>B-</option>
+    <option>O-</option>
+    <option>-</option>
+  </select></div>
+</th>
+</tr>
+
+</thead>
+</tbody>
+</table>
+</div>
+</div>
+          <table id="results" class="table table-bordered">   
+          
+            <tr id="seq">
+              <th >Type</th>
+              <th>Results</th>
+              <th>Unit</th>
+              <th>Reference Range</th>
+            </tr>
+            <tr class="WBC_Count" id="wbc">
+              <td id="seq2">WBC Count</td>
+            <td id="th_wbc"></td>
+            <td id="th_wbcunit"></td>
+            <td id="th_wbcnormal"></td>
+          </tr>
+          <tr id="neu">
+            <td id="seq2">Neutrophil</td>
+            <td id="th_neu"></td>
+            <td id="th_neuunit"></td>
+            <td id="th_neunormal"></td>
+          </tr>
+            <tr id="lym">
+              <td id="seq2">Lymphocyte</td>
+              <td id="th_lym"></td>
+              <td id="th_lymunit"></td>
+              <td id="th_lymnormal"></td>
+            </tr>
+          
+            <tr id="mon">
+              <td id="seq2">Monocyte</td>
+              <td id="th_mon"></td>
+              <td id="th_monunit"></td>
+              <td id="th_monnormal"></td>
+            </tr>
+            <tr id="eos">
+              <td id="seq2">Eosinophil</td>
+              <td id="th_eos"></td>
+              <td id="th_eosunit"></td>
+              <td id="th_eosnormal"></td>
+            </tr>
+          
+            <tr id="bas">
+              <td id="seq2">Basophil</td>
+              <td id="th_bas"></td>
+              <td id="th_basunit"></td>
+              <td id="th_basnormal"></td>
+            </tr>
+            <tr class="RBC_Count" id="rbc">
+              <td id="seq2">RBC Count</td>
+              <td id="th_rbc"></td>
+              <td id="th_rbcunit"></td>
+              <td id="th_rbcnormal"></td>
+            </tr>
+          
+            <tr class="HGB" id="hgb">
+              <td id="seq2">HGB</td>
+              <td id="th_hgb"></td>
+              <td id="th_hgbunit"></td>
+              <td id="th_hgbnormal"></td>
+            </tr>
+          
+            <tr class="HCT" id="hct">
+              <td id="seq2">HCT</td>
+              <td id="th_hct"></td>
+              <td id="th_hctunit"></td>
+              <td id="th_hctnormal"></td>
+            </tr>
+          
+            <tr id="mcv">
+              <td id="seq2">MCV</td>
+              <td id="th_mcv"></td>
+              <td id="th_mcvunit"></td>
+              <td id="th_mcvnormal"></td>
+            </tr>
+          
+            <tr id="mch">
+              <td id="seq2">MCH</td>
+              <td id="th_mch"></td>
+              <td id="th_mchunit"></td>
+              <td id="th_mchnormal"></td>
+            </tr>
+          
+            <tr id="mchc">
+              <td id="seq2">MCHC</td>
+              <td id="th_mchc"></td>
+              <td id="th_mchcunit"></td>
+              <td id="th_mchcnormal"></td>
+            </tr>
+            <tr class="PLT" id="plt">
+              <td id="seq2">PLT</td>
+              <td id="th_plt"></td>
+              <td id="th_pltunit"></td>
+              <td id="th_pltnormal"></td>
+            </tr>
+           
+            <tr id="bloodtype">
+              <td id="seq2">Blood Type/Group</td>
+              <td id="th_blood"></td>
+            </tr>
+          
+          </table>
+</div>
+
+  <div class="row no-gutters">
+        <div class="col-12">
+          <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-1 " role="group">
+              <button id="submitbtn" class="btn btn-sbt text-light">Submit</button></div>
+            <div class="btn-group mr-1 " role="group">
+        <button id="printbtn" class="btn btn-prnt text-light" onClick="window.print()">Print</button></div>
+        <div class="btn-group mr-1 " role="group">
+          <button id="resetBtn" class="btn btn-rst text-light" onClick="window.location.reload();">Reset</button></div></div></div>
+        
+              
+        </div>
+  <div class="row">
+    <div class="col-pl-3"><svg id="barcode1"></svg></div>
+    <div class="col-md-2"><div id="signatories"><img id="signatories1" width="730px" height="118px"></div>
+</div>
+ 
+<!-- The Modal -->
+<div class="modal fade" id="myModal" tabindex="-1"  role="dialog" data-backdrop="false" data-target="#myModal" aria-hidden="true"  >
+  <div class="modal-dialog modal-dialog-centered" role="document" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Missing Details! Please fill out the field/s and press submit</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-rst text-light" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal1" tabindex="-1"  role="dialog" data-backdrop="false" data-target="#myModal1" aria-hidden="true"  >
+  <div class="modal-dialog modal-dialog-centered" role="document" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Data Exists in the Database</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-rst text-light" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<script src="/jscodes/date.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"></script>    
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>    
+<script src="/jscodes/navbutton.js"></script>
+<script src="/jscodes/myth60/values.js"></script>
+</body>
+</html>

@@ -1,0 +1,818 @@
+body {
+    font-family: 'Segoe UI';
+    background: #f2f2f2;
+}
+div.yey10 {
+    color :lawngreen; 
+}
+p {
+    font-family: 'Segoe UI';
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-custom {
+    background-color: #296e74;
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+a.date{
+    font-family: 'Segoe UI';
+    font-size: 30px;
+  }
+
+a.clock{
+    font-family: 'Segoe UI Light';
+    font-size: 20px;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    perspective: 1500px;
+}
+
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #39464d;
+    color: #fff;
+    transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+    transform-origin: bottom left;
+    font-family:'Segoe UI Semibold';
+}
+
+#sidebar.active {
+    margin-left: -250px;
+    transform: rotateY(100deg);
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #39464d;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+    font-family: 'Segoe UI Light';
+}
+
+#sidebar ul p.search {
+  color: #fff;
+  padding: 10px;
+  font-family: 'Segoe UI Semibold';
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+#sidebar ul li a:hover {
+    color: #39464d;
+    background: #fff;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #fff;
+    background: #07435f;
+}
+
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+p.op{
+    font-family: 'Segoe UI';
+    color:black;
+    font-size: 35px;
+}
+p.op-name{
+    font-family: 'Segoe UI';
+    color:black;
+    font-size: 15px;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.dropdown-toggle-split{
+    padding-left:200px;
+    margin-left: 0;
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #39464d;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+#sidebarCollapse {
+    width: 40px;
+    height: 40px;
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+#sidebarCollapse span {
+    width: 80%;
+    height: 2px;
+    margin: 0 auto;
+    display: block;
+    background: #fff;
+    transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
+    transition-delay: 0.2s;
+}
+
+#sidebarCollapse span:first-of-type {
+    transform: rotate(45deg) translate(2px, 2px);
+}
+#sidebarCollapse span:nth-of-type(2) {
+    opacity: 0;
+}
+#sidebarCollapse span:last-of-type {
+    transform: rotate(-45deg) translate(1px, -1px);
+}
+
+
+#sidebarCollapse.active span {
+    transform: none;
+    opacity: 1;
+    margin: 5px auto;
+}
+
+
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+        transform: rotateY(90deg);
+    }
+    #sidebar.active {
+        margin-left: 0;
+        transform: none;
+    }
+    #sidebarCollapse span:first-of-type,
+    #sidebarCollapse span:nth-of-type(2),
+    #sidebarCollapse span:last-of-type {
+        transform: none;
+        opacity: 1;
+        margin: 5px auto;
+    }
+    #sidebarCollapse.active span {
+        margin: 0 auto;
+    }
+    #sidebarCollapse.active span:first-of-type {
+        transform: rotate(45deg) translate(2px, 2px);
+    }
+    #sidebarCollapse.active span:nth-of-type(2) {
+        opacity: 0;
+    }
+    #sidebarCollapse.active span:last-of-type {
+        transform: rotate(-45deg) translate(1px, -1px);
+    }
+
+}
+
+.user-bg {
+    background-color: #3599a8;
+}
+
+/* Style the search box */
+#mySearch {
+  width: 100%;
+  font-size: 18px;
+  padding: 11px;
+  border: 1px solid #ddd;
+  font-family:'Segoe UI';
+}
+
+/* Style the navigation menu */
+#myMenu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style the navigation links */
+#myMenu li a {
+  padding: 12px;
+  text-decoration: none;
+  color: black;
+  display: block
+}
+
+#myMenu li a:hover {
+  background-color: #eee;
+}
+
+/* Carousel */
+.carousel {
+	margin: 50px auto;
+	padding: 0 70px;
+}
+.carousel .carousel-item {
+	min-height: 330px;
+	text-align: center;
+	overflow: hidden;
+}
+.carousel .carousel-item .img-box {
+	height: 160px;
+	width: 100%;
+	position: relative;
+}
+.carousel .carousel-item img {	
+	max-width: 100%;
+	max-height: 100%;
+	display: inline-block;
+	position: absolute;
+	bottom: 0;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+}
+.carousel .carousel-item h4 {
+	font-size: 18px;
+	margin: 10px 0;
+}
+.carousel .carousel-item .btn {
+	color: #333;
+	border-radius: 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	font-weight: bold;
+	background: none;
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	margin-top: 5px;
+	line-height: 16px;
+}
+.carousel .carousel-item .btn:hover, .carousel .carousel-item .btn:focus {
+	color: #fff;
+	background: #000;
+	box-shadow: none;
+}
+.carousel .carousel-item .btn i {
+	font-size: 14px;
+	font-weight: bold;
+	margin-left: 5px;
+}
+.carousel .thumb-wrapper {
+	text-align: center;
+}
+.carousel .thumb-content {
+	padding: 15px;
+}
+.carousel-control-prev, .carousel-control-next {
+	height: 100px;
+	width: 40px;
+	background: none;
+	margin: auto 0;
+	background: rgba(0, 0, 0, 0.2);
+}
+.carousel-control-prev i, .carousel-control-next i {
+	font-size: 30px;
+	position: absolute;
+	top: 50%;
+	display: inline-block;
+	margin: 0 0 0 0;
+	z-index: 5;
+	left: 0;
+	right: 0;
+	color: rgba(0, 0, 0, 0.8);
+	text-shadow: none;
+	font-weight: bold;
+}
+.carousel-control-prev i {
+	margin-left: -1px;
+}
+.carousel-control-next i {
+	margin-right: -1px;
+}
+.carousel .carousel-indicators {
+	bottom: -50px;
+}
+.carousel-indicators li, .carousel-indicators li.active {
+	width: 10px;
+	height: 10px;
+	margin: 4px;
+	border-radius: 50%;
+	border-color: transparent;
+	border: none;
+}
+.carousel-indicators li {	
+	background: rgba(0, 0, 0, 0.2);
+}
+.carousel-indicators li.active {	
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.left {
+	display: none;
+}
+.card-dash{
+    border-radius: 15px;
+    border:transparent;
+}
+.card-bg{
+    height: 380px;
+    border-radius: 15px;
+    border:transparent;
+    background-color:#d7e6e7;
+}
+
+.card-bg1{
+    border-radius: 15px;
+    border:transparent; 
+    background-color:#00747d;
+}
+
+.card-body{
+    color: #f5f5f5; 
+}
+.card-title{
+    color: #333232; 
+}
+.card-title2{
+    color: #f5f5f5; 
+}
+/* Card Text Basic */
+div.a {
+    font-family: 'Segoe UI light';
+    color:#556c6e ;
+    font-size: 120%;
+}
+
+div.ab {
+    font-family: 'Segoe UI';
+    color:#f5f5f5 ;
+    font-size: 155%;
+    margin-left: 0px;
+}
+
+div.ac {
+    font-family: 'Segoe UI light';
+    color:#f5f5f5 ;
+    font-size: 110%;
+}
+
+div.ad {
+    font-family: 'Segoe UI Semibold';
+    color:#556c6e ;
+    font-size: 270%;
+}
+
+div.ae {
+    font-family: 'Segoe UI Semibold';
+    color:white ;
+    font-size: 45px;
+}
+
+div.af {
+    font-family: 'Segoe UI Light';
+    color:white ;
+    font-size: 120%;
+}
+
+div.ag {
+    font-family: 'Segoe UI Light';
+    color:white ;
+    font-size: 140%;
+}
+
+
+div.b {
+    font-family: 'Segoe UI light';
+    color:#1b252d;
+    font-size: 130%;
+}
+
+
+div.ba {
+    font-family: 'Segoe UI Semibold';
+    color:#1b252d ;
+    font-size: 160%;
+}
+
+div.bb {
+    font-family: 'Segoe UI light';
+    color:#1b252d ;
+    font-size: 130%;
+}
+
+div.bc {
+    font-family: 'Segoe UI Semibold';
+    color: #1b252d ;
+    font-size: 160%;
+}
+
+div.bd {
+    font-family: 'Segoe UI light';
+    color:#1b252d ;
+    font-size: 100%;
+}
+
+div.be {
+    font-family: 'Segoe UI light';
+    color:#1b252d ;
+    font-size: 120%;
+}
+
+div.bf {
+    font-family: 'Segoe UI Semibold';
+    color:#1b252d;
+    font-size: 120%;
+}
+
+
+.bg-user{
+    background-color: #77cdcc;
+}
+
+.bg-hem{
+    background-color: #41c8ab;
+}
+
+.bg-conn{
+    background-color: #1dab8c;
+}
+
+
+#btn1 {
+    display: block;
+    color: #fff;
+    text-align: center;
+    background: #3e7ba1;
+    margin-top: 10px;
+    text-decoration: none;
+    padding: 10px 5px;
+    width: 95%;
+    border-radius: 8px;
+  }
+
+.btn-hem{
+    background-color: #fafafa;
+    border-radius: 25px;
+    border:transparent;
+}
+
+.select-hem{
+    background-color: #fafafa;
+    border-radius: 25px;
+    border:transparent;
+    height: 45px;
+    width: 400px;
+    padding-left:5px;
+}
+
+
+
+ /**statictics**/
+ div.bz {
+    font-family: 'Segoe UI light';
+    color:#fff;
+    font-size: 130%;
+}
+
+div.b1 {
+    top: 40%;
+    
+
+}
+
+div.b11 {
+    top: 80%;
+    
+
+}
+
+
+
+.hello{
+    position: relative;
+    top: 38%;
+    left: -28%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) }
+
+
+/**dropdown hema**/
+.select-item {
+    margin: 20px 0;
+    text-align: center;
+    font-family: 'Segoe UI Semibold';
+    color:#f5f5f5 ;
+    font-size: 120%;
+  }
+
+ 
+
+  .col-rec{
+    margin-top:-45px;
+    margin-left:-10px;
+    margin-right:10px;
+}
+
+.col-stats{
+  margin-top:-18px;
+}
+
+/* TEST STATISTICS */
+
+
+.column {
+  float: left;
+  width: 15%;
+  padding: 0 90px;
+}
+
+.card-bg1{
+  margin-top:-18px;
+  float: left;
+  width: 100px;
+  height: 380px;
+}
+
+.statistic{
+  
+  float: center;
+  width: 205%;
+  padding: 0 10px;  
+}
+
+  div.b1{
+  margin-left:10%;
+  margin-top:10%;
+  }
+  
+  div.bz{
+  margin-left:10%;
+  margin-top:10%;
+  }
+  
+  div.b33{
+  margin-left:10%;
+  margin-top:10%;
+  }
+
+  /* Hematology Machine Dropdown */ 
+  .ui.fluid.search.dropdown{
+    font-family:'Segoe UI';
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .ui.search.dropdown > input.search {
+    position: absolute;
+    z-index: 2;
+  }
+
+  .ui.search.dropdown > input.search > .text {
+    padding-left: 40px;
+  }
+  
+  .ui.search.dropdown > .text {
+    cursor: text;
+    position: relative;
+    left: 1px;
+    z-index: auto;
+  }
+
+  .ui.search.dropdown .menu {
+    max-height: 187px;
+  }
+
+  .ui.search.dropdown .menu > .active.item {
+    text-align: center;
+    font-size:16px;
+  }
+
+  .ui.search.dropdown .menu > .item {
+    text-align: center;
+    font-size:14px;
+  }
+
+  .ui.search.dropdown > input.search {
+    background: none transparent !important;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    cursor: text;
+    top: 0;
+    left: 0px;
+    width: 100%;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    padding: inherit;
+  }
+
+  .ui.search.selection.dropdown > input.search {
+    line-height: 1.21428571em;
+    text-align: center;
+    margin-left: 18px;
+  }
+
+  .ui.search.dropdown > .dropdown.icon {
+      display:none;
+      position:none;
+      float:none;
+  }
+
+  div.text {
+      margin-left: 27px;
+      font-weight: bold;
+  }
+
+/*--------------
+      Value
+---------------*/
+
+.ui.statistics .statistic > .value,
+.ui.statistic > .value {
+  font-family: 'Segoe UI Semibold';
+  font-size: 45px;
+  font-weight: normal;
+  line-height: 1em;
+  color: white;
+  text-transform:none;
+  text-align: center;
+}
+
+/*--------------
+     Label
+---------------*/
+
+.ui.statistics .statistic > .label,
+.ui.statistic > .label {
+  font-family: 'Segoe UI Light';
+  font-size: 120%;
+  font-weight: normal;
+  color: white;
+  text-transform:none;
+  text-align: center;
+}
+
+/* Top Label */
+
+.ui.statistics .statistic > .label ~ .value,
+.ui.statistic > .label ~ .value {
+  margin-top: 0;
+}
+
+/* Bottom Label */
+
+.ui.statistics .statistic > .value ~ .label,
+.ui.statistic > .value ~ .label {
+  margin-top: 0;
+}
+#date1 {
+
+  display:none; 
+}
+
+div.filter-option-inner-inner{
+  text-align: center;
+  font-weight: bolder;
+  font-size:130%;
+}
+
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover{
+    background-color: #336e74;
+    background-image:linear-gradient(to bottom,#336e74 0,#336e74 100%);
+}
+
+
+
+/* dISCLAIMER */
+
+#ModalCenter{
+    background-color: rgba(10,10,10,0.45);
+    }
+    a, a:hover, a:focus {
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    #ModalCenterDsclmr{
+      background-color: rgba(10,10,10,0.45);
+      }
+      a, a:hover, a:focus {
+        color: inherit;
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+    
+    #ModalCenterScn{
+        background-color: rgba(10,10,10,0.45);
+        }
+        a, a:hover, a:focus {
+          color: inherit;
+          text-decoration: none;
+          transition: all 0.3s;
+        }
+
+.modal-header{
+    background: #337277; 
+  
+  }
+
+  .modal-title{
+    font-family: Segoe UI Light;
+    color:white;
+
+  }
+
+  .text-modal-header{
+   
+  }
+
+  #myModal{
+    background-color: rgba(10,10,10,0.45);
+    }
+    a, a:hover, a:focus {
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    body {
+        overflow-x: hidden; 
+      }

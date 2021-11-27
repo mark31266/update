@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Contact Us</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="/rep/firebase-app.js"></script>
+  <script src="/rep/firebase-analytics.js"></script>
+  <script src="/rep/firebase-firestore.js"></script>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script src="/rep/firebase-auth.js"></script>
+<script src="/rep/firebase-database.js"></script>
+  <link rel="stylesheet" href="/rep/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <script src="/rep/jquery.min.js"></script> 
+  <script src="/rep/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+<script src='/rep/socket.io.js'></script>
+<script defer src="/rep/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="/rep/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script src='/jscodes/moment.js'></script>
+</head>
+<link rel="stylesheet" href="/css/myth22/about.css">
+  <body>
+  <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+          <div class="sidebar-header">
+              <h2><b>LabX</b></h2>
+          </div>
+          <ul class="list-unstyled components">
+            <p class="search" id="machinename" style="font-size:22px;"></p>
+
+            <li >
+                <a href="/home">Main Dashboard</a>
+            </li>
+            <li>
+              <a href="#homeSubmenu1"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Run Samples</a>
+              <ul class="collapse list-unstyled show" id="homeSubmenu1">
+               
+            </ul>
+          </li>
+            <li>
+              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Manage Records</a>
+              <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a href="/myth18/records">Mythic 18</a>
+                </li>
+                <li>
+                    <a href="/myth22/records">Mythic 22</a>
+                </li>
+                <li>
+                    <a href="/myth60/records">Mythic 60</a>
+                </li>
+            </ul>
+            </li>
+            <li  class="active">
+              <a href="/about">Contact Us</a>
+          </li>
+            <li>
+              <a href="/settings">Settings</a>
+          </li>
+        </µL>
+    </nav>
+        <!-- Page Content Holder -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-custom">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="navbar-btn" style="background-color:transparent">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="nav navbar-nav navbar-center">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link mr-1 my-1 date1" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false" style="color:white"><div id="date"></div><div id="date1"></div>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav ml-auto justify-content-center">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link mr-2 my-1 clock" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false" style="color:white"><div id="clock"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/sessionLogout" role="button"><img src="https://firebasestorage.googleapis.com/v0/b/analyzerdb.appspot.com/o/logout.png?alt=media&token=e849b0b4-1e57-49c4-8ff4-412c2a9ade1d" alt="User" width="35px" height="35px"></a>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+            </nav>
+                <div class="contact-form text-center align-middle">
+                  <div class="first-container">
+                    <div class="info-container">
+                      <div><img class="icon">
+                        <h3>Address</h3>
+                        <p id="address">71 18th Avenue, Cubao, Quezon City</p>
+                      </div>
+                      <div> <img class="icon">
+                        <h3>Contact Us</h3>
+                        <p id="number">+63 9202886054</p>
+                      </div>
+                      <div><img class="icon">
+                        <h3>Email Us</h3>
+                        <p id="email">markglennmontenegro@gmail.com</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="second-container">
+                    <h2>Send Us A Message</h2>
+                    <form>
+                      <div class="form-group">
+                        <label for="name-input">Enter your name</label>
+                        <input id="name-input" type="text" placeholder="Full Name" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="email-input">Enter your email</label>
+                        <input id="email-input" type="text" placeholder="username@email.com" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="message-textarea">Message / Feedback</label>
+                        <textarea id="message-textarea" placeholder="Write us a message" required></textarea>
+                      </div>
+                    </form>
+                    <button id="sendMsgbtn" class="btn text-light"  data-toggle="modal" data-target="#ModalCenter">Send Message</button>
+                    <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true" data-backdrop="false">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title text-modal-header" id="ModalLongTitle"><div id="messageconfirm"></div></h5>
+                            </button>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-rst text-light" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="container">
+                  <div class="center-block text-center">
+                 
+                  
+                 
+          
+                <button id="prvcyPolicybtn" class="btn text-light"  data-toggle="modal" data-target="#ModalCenterPrvcy">Privacy Policy</button>
+                    <div class="modal fade" id="ModalCenterPrvcy" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true" data-backdrop="false">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title text-modal-header" id="ModalLongTitle"><div>Privacy Policy</div></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-footer">
+                            <p class="text-justify small">This Privacy Policy is adopted in accordance with Republic Act No. 10173, also known as the Data Privacy Act of 2012 (DPA), its Implementing Rules and Regulations, and other applicable policies, such as National Privacy Commission issuances. This company values and respects your privacy rights, and ensures that all personal data acquired from you, our clients and customers, is treated in accordance with the general principles of transparency, legitimate purpose, and proportionality. In accessing the laboratory information system, every user and patient information stored in the system is secured and will remain confidential.</p>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                    <button id="dsclmrbtn" class="btn text-light"  data-toggle="modal" data-target="#ModalCenterdsclmr">Disclaimer</button>
+                        <div class="modal fade" id="ModalCenterdsclmr" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true" data-backdrop="false">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title text-modal-header" id="ModalLongTitle"><div>DISCLAIMER</div></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-footer">
+                                <p class="text-justify small">This Laboratory Information System collects personal information used by Medical Practitioners 
+                                  and Medical Technologists for the purpose of using the collected data appropriately and for legitimate purposes. 
+                                  The personal information used will be processed fittingly to your requests and present you with the necessary information you need to access.</p>
+                             
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                </div>
+               
+
+                
+
+                      
+                
+                    <!-- <button id="validatebtn" class="btn text-center text-light">Validate</button> -->
+                    
+                   
+                    
+
+                <script src="/jscodes/date.js"></script>
+                <script src="/rep/bootstrap2.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>        
+<script src="/jscodes/navbutton.js"></script>
+<script src="/jscodes/myth22/about.js"></script>    
+  </div>
+  </body>
+</html>
