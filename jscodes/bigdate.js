@@ -61,7 +61,10 @@ const renderCalendar = () => {
 
   document.querySelector(".date h1").innerHTML = months[date.getMonth()];
 
-  document.querySelector(".date p").innerHTML = new Date().toDateString();
+  const event = new Date();
+const options = { dateStyle: 'short' };
+const date5 = event.toLocaleString('en-GB', options);
+  document.querySelector(".date p").innerHTML = date5.replace("/", "-").replace("/", "-");
 
   let days = "";
 

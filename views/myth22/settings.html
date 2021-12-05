@@ -181,15 +181,9 @@
 
  
 
-
-<div class="row-container">
-&nbsp<div class="col-md-12 text-center">
-</div>
-<div class="row-container">
-  <div class="col-md-12 text-center">
-</div>
-<div class="row-container">
-  <div class="col-md-12 text-center">
+<div class="container">
+  <div class="center-block text-center">
+  &nbsp <div class="col-12">
 <button id="advancedbtn"  class="btn text-center text-light" data-toggle="modal" data-target="#ModalCenter" >Audit Log</button> 
 <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true" data-backdrop="false">
   
@@ -206,7 +200,7 @@
       
         <div class="modal-body" >
 
-          
+    
           <script src="/jscodes/date.js"></script>
           <script src="/jscodes/bigdate.js"></script> 
       <table class="table " id="example" style="width:100%" >
@@ -229,13 +223,17 @@
 </div>
 </div>
 </div>
-
+<div class="row">
+  <div class="col">
+    &nbsp
+    <div>
+</div>
 </div> 
+</div>
+</div>
 
-   <!-- EXPERIMENT TYM -->
+   <!-- UPLOAD PIC -->
    
-    <div class="row-container">
-      <div class="col-md-12 text-center">
     <button id="picbtn"  class="btn text-center text-light" data-toggle="modal" data-target="#ModalPic">Change Print Elements</button> 
     <div class="modal fade" id="ModalPic" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true" data-backdrop="false">
       
@@ -259,7 +257,7 @@
               <div class="col-9 pt-5 form-group hirehide is-empty is-fileinput width100">
                 <div class="inputBoxUpload">
                 <select class="selectpicker toggle mb-4 btn-disabled" id="optionselect" data-size="4" data-width="100%" style="text-align:center;">
-                  <option selected value style="text-align:center;">Select an Option</option>
+                  <option selected value style="text-align:center;" disabled>Select an Option</option>
                   <option style="text-align:center;">Logo</option>
                   <option style="text-align:center;">Header</option>
                   <option style="text-align:center;">Signatories</option>
@@ -277,21 +275,6 @@
             </div>
               </div>
             
-            
-              
-              <!--etooo
-              <div class="custom-file mb-3">
-                <input type="file" class="custom-file-input" id="customFile" name="filename">
-                <label class="custom-file-label" for="customFile">Choose file</label>
-              </div>-->
-              
-             
-              <!-- <h3>aken too - glenn</h3>
-              <label>Image Name</label><input type="text" id="namebox"><label id="extlab"></label>
-              <img id="myimg1" class="imgcustom">
-              <button id="selbtn">Select Image</button> 
-              
-              <button id="downbtn">Retrieve Image</button>  -->
               </form>
           </div>
          
@@ -300,10 +283,50 @@
      </div>
     </div>
     </div>
-    </div>
-    </div>
-  </div>
+    
+    
 
+    <!-- DATE FORMAT -->
+   
+    <button id="datebtn"  class="btn text-center text-light" data-toggle="modal" data-target="#Modaldate">Change Date Format</button> 
+    <div class="modal fade" id="Modaldate" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true" data-backdrop="false">
+      
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
+        <div class="modal-content" style="width:100%; height:250px;">
+          
+          <div class="modal-header" >
+            <h5 class="modal-title text-modal-header" id="ModalLongTitle">Choose Date Format</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body ">
+        
+              <div class="row">
+                <div class="col">
+                  
+                </div>
+              </div>
+              <div class="row">
+              <div class="col-9 pt-2 form-group hirehide is-empty is-fileinput width100">
+                <div class="inputBoxUpload">
+                <select class="selectpicker toggle mb-4 btn-disabled" id="dateselection" data-size="6" data-width="135%" style="text-align:center;">
+                </select></div>
+
+                <button id="submitdata1" class="btn btn-sbmt1 text-light" onclick=""class="button"><span>Submit</span>
+                                        
+              </div>
+          </div>
+              
+     </div>
+    </div>
+    </div>
+    </div>
+   
+</div>
+</div>
+ 
+    
          <!-- The Modal1 -->
 <div class="modal fade" id="myModal1" tabindex="-1"  role="dialog" data-backdrop="false" data-target="#myModal" aria-hidden="true"  >
   <div class="modal-dialog modal-dialog-centered" role="document" >
@@ -314,6 +337,7 @@
   </div>
 </div>
 
+  
   <script>
     // Add the following code if you want the name of the file appear on select
     $(".custom-file-input").on("change", function() {

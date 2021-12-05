@@ -10,7 +10,7 @@ const port = new SerialPort('COM1', {
 }) 
 var admin = require("firebase-admin"); 
 const app = express()
-const port1 = process.env.PORT || 3000
+const port1 = (process.env.PORT || '80'); 
 let server = http.createServer(app);
 var serviceAccount = require("./serviceAccountKey.json");
 admin.initializeApp({
@@ -339,6 +339,7 @@ io.emit('PLTL', PLTL)
 })
 
 
- server.listen(80, "127.0.0.1");
- console.log('Server running at http://127.0.0.1:80/');
+ server.listen(port1, "127.0.0.1");
+ console.log('Deployed server running');
+
 

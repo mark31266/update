@@ -55,7 +55,25 @@ socket.on('status', function(status) {
 //--------------writing data---------------------//
 document.getElementById("submitdata").addEventListener("click", function(event) {
      //--------------ID data---------------------//
-  var date1 = document.getElementById("dateselect1").value; 
+     db.collection("DateSetting").doc("Format").get().then((doc) => {
+      var format2 = doc.data().format; 
+     if (format2 == "mm-dd-yyyy") 
+    {
+      var date1 = document.getElementById("dateselect1").value.replace(/(\d*)-(\d*)-(\d*)/,'$2-$1-$3');
+    }
+    if (format2 == "dd-mm-yyyy") 
+    {
+      var date1 = document.getElementById("dateselect1").value.replace(/(\d*)-(\d*)-(\d*)/,'$1-$2-$3');
+    }
+    if (format2 == "yyyy-dd-mm") 
+    {
+    var date1 = document.getElementById("dateselect1").value.replace(/(\d*)-(\d*)-(\d*)/,'$2-$3-$1')
+    }
+    if (format2 == "yyyy-mm-dd") 
+    {
+    var date1 = document.getElementById("dateselect1").value.replace(/(\d*)-(\d*)-(\d*)/,'$3-$2-$1')
+    }
+
   var sid1 = document.getElementById("sidselect").value; 
 
 
@@ -67,6 +85,7 @@ document.getElementById("submitdata").addEventListener("click", function(event) 
    
  
     })
+})
 })
     //-----------------Tables--------------------/
 const fn = document.querySelector('#fname1');
@@ -649,23 +668,23 @@ function deletefunction()
 
 }
 function myFunction3(){
-firebase.firestore().enablePersistence()
-.catch((err) => {
-    if (err.code == 'failed-precondition') {
-        // Multiple tabs open, persistence can o-nly be enabled
-        // in one tab at a a time.
-        console.log(err)
-        // ...
-    } else if (err.code == 'unimplemented') {
-        // The current browser does not support all of the
-        // features required to enable persistence
-        // ...
-        console.log(err)
-    }
-    else{
-      console.log("yey")
-    }
-});
+// firebase.firestore().enablePersistence()
+// .catch((err) => {
+//     if (err.code == 'failed-precondition') {
+//         // Multiple tabs open, persistence can o-nly be enabled
+//         // in one tab at a a time.
+//         console.log(err)
+//         // ...
+//     } else if (err.code == 'unimplemented') {
+//         // The current browser does not support all of the
+//         // features required to enable persistence
+//         // ...
+//         console.log(err)
+//     }
+//     else{
+//       console.log("yey")
+//     }
+// });
        //-----------------Photos Get Data--------------------/
        var myimg = document.getElementById("signatories1"); 
        var myimg2 = document.getElementById("logo1"); 
@@ -714,13 +733,35 @@ function getStories() {
     //--------------ID data---------------------//
 var result = [];
 db.collection("patientvalues").doc(username + " Mythic 22").collection("DATE").get().then(querySnapshot => {
-  querySnapshot.forEach(doc => result.push(doc.id));
-  result.forEach( function(item) { 
-    const optionObj = document.createElement("option");
-    optionObj.textContent = item;
+  querySnapshot.forEach(doc => result.push(doc.id)); 
+    result.forEach( function(item) { 
+      const optionObj = document.createElement("option");
+     //mm-dd-yyyy
+     db.collection("DateSetting").doc("Format").get().then((doc) => {
+      var format1 = doc.data().format; 
+     if (format1 == "mm-dd-yyyy") 
+    {
+      optionObj.textContent = item.replace(/(\d*)-(\d*)-(\d*)/,'$2-$1-$3');
+    }
+    if (format1 == "dd-mm-yyyy") 
+    {
+      optionObj.textContent = item.replace(/(\d*)-(\d*)-(\d*)/,'$1-$2-$3');
+    }
+    if (format1 == "yyyy-dd-mm") 
+    {
+      optionObj.textContent = item.replace(/(\d*)-(\d*)-(\d*)/,'$3-$1-$2');
+    } 
+    if (format1 == "yyyy-mm-dd") 
+    {
+      optionObj.textContent = item.replace(/(\d*)-(\d*)-(\d*)/,'$3-$2-$1');
+    } 
     document.getElementById("dateselect1").appendChild(optionObj);
     $('#dateselect1').selectpicker('refresh');
-  }); 
+  })
+    
+    }); 
+
+  
 })
 return result;
 }
@@ -730,7 +771,25 @@ function sidfunction() {
    //--------------ID data---------------------//
 
 var result = [];
-var x = document.getElementById("dateselect1").value;
+db.collection("DateSetting").doc("Format").get().then((doc) => {
+  var format2 = doc.data().format; 
+ if (format2 == "mm-dd-yyyy") 
+{
+  var x = document.getElementById("dateselect1").value.replace(/(\d*)-(\d*)-(\d*)/,'$2-$1-$3');
+}
+if (format2 == "dd-mm-yyyy") 
+{
+  var x = document.getElementById("dateselect1").value.replace(/(\d*)-(\d*)-(\d*)/,'$1-$2-$3');
+}
+if (format2 == "yyyy-dd-mm") 
+{
+var x = document.getElementById("dateselect1").value.replace(/(\d*)-(\d*)-(\d*)/,'$2-$3-$1')
+}
+if (format2 == "yyyy-mm-dd") 
+{
+var x = document.getElementById("dateselect1").value.replace(/(\d*)-(\d*)-(\d*)/,'$3-$2-$1')
+}
+
 db.collection("patientvalues").doc(username + " Mythic 22").collection("DATE").doc(x).collection("SID").get().then(querySnapshot => {
   querySnapshot.forEach(doc => result.push(doc.id));
   result.forEach( function(item) { 
@@ -740,6 +799,7 @@ db.collection("patientvalues").doc(username + " Mythic 22").collection("DATE").d
     $('#sidselect').selectpicker('refresh');
     
   }); 
+})
 })
 return result;
 

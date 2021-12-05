@@ -18,18 +18,39 @@ if (sec < 10){
 document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec;
 }
 function displaydate(){
+    let db2 = firebase.firestore();
 n =  new Date();
 w = n.getDay();
 y = n.getFullYear();
-m = n.getMonth() + 1 ;
+m = n.getMonth() + 1;
 m2 = n.getMonth();
-d = n.getDate();
+d = (n.getDate() < 10 ? '0' : '') + n.getDate()
 
-var mon = ["Jan","Feb","Mar","Apr","May","June","Jul","Aug","Sep","Oct","Nov","Dec"];
+// var mon = ["Jan","Feb","Mar","Apr","May","June","Jul","Aug","Sep","Oct","Nov","12"];
 var wks = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 var week =[wks[w]];
-var month =[mon[m2]];
-document.getElementById("date1").innerHTML =  month + " " + d + ", " + y + " <b>| </b>" + week;
-document.getElementById("date").innerHTML =  month + " " + d + ", " + y + " <b>| </b>" + week;
+db2.collection("DateSetting").doc("Format").get().then((doc) => {
+    var format2 = doc.data().format; 
+   if (format2 == "mm-dd-yyyy") 
+  {
+    document.getElementById("date1").innerHTML =  m + "-" + d + "-" + y + " <b>| </b>" + week;
+    document.getElementById("date").innerHTML =  m + "-" + d + "-" + y + " <b>| </b>" + week;
+  }
+  if (format2 == "dd-mm-yyyy") 
+  {
+    document.getElementById("date1").innerHTML =  d + "-" + m + "-" + y + " <b>| </b>" + week;
+    document.getElementById("date").innerHTML =  d + "-" + m + "-" + y + " <b>| </b>" + week;
+  }
+  if (format2 == "yyyy-dd-mm") 
+  {
+    document.getElementById("date1").innerHTML =  y + "-" + d + "-" + m + " <b>| </b>" + week;
+    document.getElementById("date").innerHTML =  y + "-" + d + "-" + m + " <b>| </b>" + week;
+  }
+  if (format2 == "yyyy-mm-dd") 
+  {
+    document.getElementById("date1").innerHTML =  y + "-" + m + "-" + d + " <b>| </b>" + week;
+    document.getElementById("date").innerHTML =  y + "-" + m + "-" + d + " <b>| </b>" + week;
+  }
 
+})
 }

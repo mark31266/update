@@ -15,19 +15,19 @@
   const analytics = getAnalytics(app);
   firebase.initializeApp(firebaseConfig);
   import {
-    getFirestore, query, doc,setDoc,getDoc, where ,getDocs, onSnapshot, collection 
+    getFirestore, query, doc,setDoc,getDoc, where ,getDocs, onSnapshot, collection, 
   }
   from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js"
+
+
   
   import {
     getStorage, ref as sRef, uploadBytesResumable, getDownloadURL
   }
   from "https://www.gstatic.com/firebasejs/9.3.0/firebase-storage.js"
 
-
-
-
 const db = getFirestore(); 
+let db2 = firebase.firestore();
 var auto_inc = 0; 
 var logresultstable = document.getElementById("logresults"); 
   firebase.auth().onAuthStateChanged(function(user) {
@@ -38,6 +38,42 @@ var logresultstable = document.getElementById("logresults");
 
       }
     } 
+   
+      db2.collection("DateSetting").doc("Format").get().then((doc) => {
+        var format3 = doc.data().format; 
+        const optionObj = document.createElement("option");
+        const optionObj2 = document.createElement("option");
+        const optionObj3 = document.createElement("option");
+        const optionObj4 = document.createElement("option");
+        const optionObj5 = document.createElement("option");
+        optionObj.textContent = "Current Selection: " + format3; 
+        optionObj.disabled = true; 
+        optionObj.selected = true; 
+        optionObj.style = "text-align:center"; 
+        optionObj.className = "btn-disabled"
+
+        optionObj2.textContent = "dd-mm-yyyy";
+        optionObj2.style = "text-align:center;"; 
+
+        optionObj3.textContent = "mm-dd-yyyy";
+        optionObj3.style = "text-align:center;"; 
+
+        optionObj4.textContent = "yyyy-mm-dd";
+        optionObj4.style = "text-align:center;"; 
+
+        optionObj5.textContent = "yyyy-dd-mm";
+        optionObj5.style = "text-align:center;"; 
+
+
+        document.getElementById("dateselection").appendChild(optionObj);
+        document.getElementById("dateselection").appendChild(optionObj2);
+        document.getElementById("dateselection").appendChild(optionObj3);
+        document.getElementById("dateselection").appendChild(optionObj4);
+        document.getElementById("dateselection").appendChild(optionObj5);
+        $('#dateselection').selectpicker('refresh');
+        $('#dateselection').selectpicker('render');
+      }); 
+    
     var socket = io();
     var machinename; 
     socket.on('status', function(status) {
@@ -207,7 +243,6 @@ function handleBarcode(scanned_barcode) {
 }
 
 //--------Image Upload---------//
-
  var reader = new FileReader(); 
  var proglab = document.getElementById("upprogress"); 
  var optionselect = document.getElementById("optionselect"); 
@@ -284,9 +319,46 @@ function reset(elm, prserveFileName) {
      
   }
 }
+document.getElementById("submitdata1").addEventListener("click", function(event) {
+  datesettings(); 
+ 
+ 
+})
 
-async function SaveURLtoFirestore(url)
+
+async function datesettings()
 {
+  var dateselection = document.getElementById("dateselection"); 
+  if(dateselection.value == "dd-mm-yyyy")
+  {
+    await setDoc(doc(db, "DateSetting", "Format"), {
+      format : "dd-mm-yyyy"
+    });
+  }
+  if(dateselection.value == "mm-dd-yyyy")
+  {
+    await setDoc(doc(db, "DateSetting", "Format"), {
+      format : "mm-dd-yyyy"
+    });
+  }
+  if(dateselection.value == "yyyy-mm-dd")
+  {
+    await setDoc(doc(db, "DateSetting", "Format"), {
+      format : "yyyy-mm-dd"
+    });
+  }
+  if(dateselection.value == "yyyy-dd-mm")
+  {
+    await setDoc(doc(db, "DateSetting", "Format"), {
+      format : "yyyy-dd-mm"
+    });
+  }
+  window.location.reload(); 
+}
+
+
+  async function SaveURLtoFirestore(url)
+  {
   var filename = document.getElementById("filenamelabel").innerText;
 
   var ref = doc(db, "Images/"+filename); 

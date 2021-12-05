@@ -57,7 +57,7 @@ window.addEventListener("DOMContentLoaded", () => {
                   firebase.auth().onAuthStateChanged(function(user) {
                     if (user) {
                       console.log("User " + login + " has logged in")
-                      window.location.assign("myth22/home");
+                      window.location.assign("/home");
                     } else {
                       return firebase.auth().signOut();
                     }
