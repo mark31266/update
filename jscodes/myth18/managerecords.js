@@ -20,20 +20,73 @@ firebase.auth().onAuthStateChanged(function(user) {
 })
 
 var clicks = 0;
-
-    
+var socket = io();
+socket.on('status', function(status) {
+  console.log(status);
+  if (String(status).includes("COM1") ){
+   machinename = "Orphee Mythic 22"; 
+     //SelectPicker Nav
+   const navobj = document.createElement("li");
+   const navobj2 = document.createElement("a");
+   navobj2.textContent = "Mythic 22";
+   navobj2.href = "/myth22/run"; 
+   navobj.appendChild(navobj2)
+   document.getElementById("homeSubmenu1").appendChild(navobj);
+  }
+  if (String(status).includes("COM2") ){
+    machinename = "Orphee Mythic 18"; 
+    const navobj = document.createElement("li");
+    const navobj2 = document.createElement("a");
+    navobj2.textContent = "Mythic 18";
+    navobj2.href = "/myth18/run"; 
+    navobj.appendChild(navobj2)
+    document.getElementById("homeSubmenu1").appendChild(navobj);
+   }
+   if (String(status).includes("COM3") ){
+    machinename = "Orphee Mythic 60"; 
+    const navobj = document.createElement("li");
+    const navobj2 = document.createElement("a");
+    navobj2.textContent = "Mythic 22";
+    navobj2.href = "/myth60/run"; 
+    navobj.appendChild(navobj2)
+    document.getElementById("homeSubmenu1").appendChild(navobj);
+   }
+  socket.close();
+});
 //--------------writing data---------------------//
 document.getElementById("submitdata").addEventListener("click", function(event) {
      //--------------ID data---------------------//
-  var date1 = document.getElementById("dateselect1").value; 
+     db.collection("DateSetting").doc("Format").get().then((doc) => {
+      var format2 = doc.data().format; 
+     if (format2 == "mm-dd-yyyy") 
+    {
+      var date1 = document.getElementById("dateselect1").value.replace(/(\d*)-(\d*)-(\d*)/,'$2-$1-$3');
+    }
+    if (format2 == "dd-mm-yyyy") 
+    {
+      var date1 = document.getElementById("dateselect1").value.replace(/(\d*)-(\d*)-(\d*)/,'$1-$2-$3');
+    }
+    if (format2 == "yyyy-dd-mm") 
+    {
+    var date1 = document.getElementById("dateselect1").value.replace(/(\d*)-(\d*)-(\d*)/,'$2-$3-$1')
+    }
+    if (format2 == "yyyy-mm-dd") 
+    {
+    var date1 = document.getElementById("dateselect1").value.replace(/(\d*)-(\d*)-(\d*)/,'$3-$2-$1')
+    }
+
   var sid1 = document.getElementById("sidselect").value; 
+
+
   db.collection("patientvalues").doc(username + " Mythic 18").collection("DATE").doc(date1).collection("SID").doc(sid1).collection("DATA")
   .get()  
   .then((snapshot) => {
     snapshot.docs.forEach(doc => {
       renderAccount(doc);    
-
+   
+ 
     })
+})
 })
     //-----------------Tables--------------------/
 const results1 = document.querySelector('#results');
@@ -543,23 +596,23 @@ function deletefunction()
 
 }
 function myFunction3(){
-firebase.firestore().enablePersistence()
-.catch((err) => {
-    if (err.code == 'failed-precondition') {
-        // Multiple tabs open, persistence can o-nly be enabled
-        // in one tab at a a time.
-        console.log(err)
-        // ...
-    } else if (err.code == 'unimplemented') {
-        // The current browser does not support all of the
-        // features required to enable persistence
-        // ...
-        console.log(err)
-    }
-    else{
-      console.log("Error")
-    }
-});
+// firebase.firestore().enablePersistence()
+// .catch((err) => {
+//     if (err.code == 'failed-precondition') {
+//         // Multiple tabs open, persistence can o-nly be enabled
+//         // in one tab at a a time.
+//         console.log(err)
+//         // ...
+//     } else if (err.code == 'unimplemented') {
+//         // The current browser does not support all of the
+//         // features required to enable persistence
+//         // ...
+//         console.log(err)
+//     }
+//     else{
+//       console.log("Error")
+//     }
+// });
 var myimg = document.getElementById("signatories1"); 
 var myimg2 = document.getElementById("logo1"); 
 var myimg3 = document.getElementById("header1"); 
@@ -606,17 +659,35 @@ var myimg3 = document.getElementById("header1");
 function getStories() {
     //--------------ID data---------------------//
 var result = [];
-
 db.collection("patientvalues").doc(username + " Mythic 18").collection("DATE").get().then(querySnapshot => {
-  querySnapshot.forEach(doc => result.push(doc.id));
-  result.forEach( function(item) { 
-    const optionObj = document.createElement("option");
-    optionObj.textContent = item;
+  querySnapshot.forEach(doc => result.push(doc.id)); 
+    result.forEach( function(item) { 
+      const optionObj = document.createElement("option");
+     //mm-dd-yyyy
+     db.collection("DateSetting").doc("Format").get().then((doc) => {
+      var format1 = doc.data().format; 
+     if (format1 == "mm-dd-yyyy") 
+    {
+      optionObj.textContent = item.replace(/(\d*)-(\d*)-(\d*)/,'$2-$1-$3');
+    }
+    if (format1 == "dd-mm-yyyy") 
+    {
+      optionObj.textContent = item.replace(/(\d*)-(\d*)-(\d*)/,'$1-$2-$3');
+    }
+    if (format1 == "yyyy-dd-mm") 
+    {
+      optionObj.textContent = item.replace(/(\d*)-(\d*)-(\d*)/,'$3-$1-$2');
+    } 
+    if (format1 == "yyyy-mm-dd") 
+    {
+      optionObj.textContent = item.replace(/(\d*)-(\d*)-(\d*)/,'$3-$2-$1');
+    } 
     document.getElementById("dateselect1").appendChild(optionObj);
     $('#dateselect1').selectpicker('refresh');
-  }); 
- 
-  
+  })
+    
+    }); 
+
 })
 return result;
 }
@@ -627,16 +698,35 @@ getStories();
 function sidfunction() {
    //--------------ID data---------------------//
 var result = [];
-var x = document.getElementById("dateselect1").value;
-db.collection("patientvalues").doc(username).collection("DATE").doc(x).collection("SID").get().then(querySnapshot => {
+db.collection("DateSetting").doc("Format").get().then((doc) => {
+  var format2 = doc.data().format; 
+ if (format2 == "mm-dd-yyyy") 
+{
+  var x = document.getElementById("dateselect1").value.replace(/(\d*)-(\d*)-(\d*)/,'$2-$1-$3');
+}
+if (format2 == "dd-mm-yyyy") 
+{
+  var x = document.getElementById("dateselect1").value.replace(/(\d*)-(\d*)-(\d*)/,'$1-$2-$3');
+}
+if (format2 == "yyyy-dd-mm") 
+{
+var x = document.getElementById("dateselect1").value.replace(/(\d*)-(\d*)-(\d*)/,'$2-$3-$1')
+}
+if (format2 == "yyyy-mm-dd") 
+{
+var x = document.getElementById("dateselect1").value.replace(/(\d*)-(\d*)-(\d*)/,'$3-$2-$1')
+}
+
+db.collection("patientvalues").doc(username + " Mythic 18").collection("DATE").doc(x).collection("SID").get().then(querySnapshot => {
   querySnapshot.forEach(doc => result.push(doc.id));
   result.forEach( function(item) { 
     const optionObj = document.createElement("option");
     optionObj.textContent = item;
     document.getElementById("sidselect").appendChild(optionObj);
     $('#sidselect').selectpicker('refresh');
+    
   }); 
-
+})
 })
 return result;
 
